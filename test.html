@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Jade</title>
+        <style type="text/css">
+            .visible { display:block; }
+            .hidden { display:none; }
+        </style>
+	</head>
+    <body>
+        <div id="container">
+        </div>
+        <script src="jquery.js"></script>
+        <script src="underscore.js"></script>
+        <script src="backbone.js"></script>
+        <script type="text/template" id="todo-view">
+            <p class="<%= visible_status %>  %>"><input type="checkbox" name="is_done"/><%= todo %><button class="remove">remove</button></p>
+        </script>
+        <script src="myapp.js"></script>
+    </body>
+</html>
