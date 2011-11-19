@@ -77,14 +77,27 @@ $(document).ready(function(){
         }
     });
 
-    window.todo = new Todo({todo: 'Ir ao banco'});
-    window.todoView = new TodoView({model: todo});
+    window.NotificationView = Backbone.View.extend({
+        initialize: function(){
+            _.bindAll(this, 'render');
+            window.todos.bind('add', this.render);
+            this.template = _.template($('#alert-view').html());
+        },
+        render:function(){
+            content = this.template({});
+            $(this.el).html(content);
+            setTimeout(function(){ $(this.el).find('.alert-message').alert('close');  }, 2000);
+            return this;
+        }
+    });
+
     window.todos = new Todos();
     window.entertodoview = new EnterTodoView();
     window.remainingItemsView = new RemainingItemsView();
-    todos.add(todo);
+    todos.bind('add',function(){
+        notificationView = new NotificationView();
+        $('body').prepend(notificationView.render().el);
+    });
     $('#container').prepend(entertodoview.render().el);
-    $('#container ul').append(todoView.render().el);
     $('#counter').append(remainingItemsView.render().el);
-
 });

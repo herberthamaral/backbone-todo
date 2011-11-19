@@ -20,6 +20,12 @@
         <script src="jquery.js"></script>
         <script src="underscore.js"></script>
         <script src="backbone.js"></script>
+        <script type="text/template" id="alert-view">
+            <div class="alert-message success fade in" data-alert="alert">
+                <a class="close" href="#">x</a>
+                <p class="content">Item adicionado!</p>
+            </div>
+        </script>
         <script type="text/template" id="todo-enter-view">
             <input type="text" class="span8" placeholder="insira sua tarefa e tecle enter" id="todo-text" />
         </script>
@@ -34,6 +40,7 @@
         <script type="text/template" id="remaining-items-view">
             <p><%= remaining %> itens restantes</p>
         </script>
+        <script src="bootstrap-alert.js"></script>
         <script src="myapp.js"></script>
     </body>
 </html>
