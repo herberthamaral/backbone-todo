@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-        <title>Jade</title>
+        <title>backbone experiments</title>
+        <link rel="stylesheet" href="bootstrap.css" />
         <style type="text/css">
             .visible { display:block; }
             .hidden { display:none; }
@@ -11,21 +12,24 @@
 	</head>
     <body>
         <div id="container">
+            <ul class='inputs-list'>
+            </ul>
         </div>
-        <div id="counter">
+        <div id="counter" style="clear:both;">
         </div>
         <script src="jquery.js"></script>
         <script src="underscore.js"></script>
         <script src="backbone.js"></script>
         <script type="text/template" id="todo-enter-view">
-            <input type="text" placeholder="insira sua tarefa e tecle enter" id="todo-text" />
+            <input type="text" class="span8" placeholder="insira sua tarefa e tecle enter" id="todo-text" />
         </script>
         <script type="text/template" id="todo-view">
-            <p> 
-                <input type="checkbox"
-                    class="done_status" <%= is_done?'checked':'' %> />
-                <label class="<%= is_done?'done':'undone' %>"><%= todo %></label>
-            </p>
+            <li>
+                <label>
+                    <input style="float:left" type="checkbox" class="done_status" <%= is_done?'checked':'' %> />
+                    <span class="<%= is_done?'done':'undone' %>"><%= todo %></span>
+                </label>
+            </li>
         </script>
         <script type="text/template" id="remaining-items-view">
             <p><%= remaining %> itens restantes</p>

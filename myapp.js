@@ -31,12 +31,12 @@ $(document).ready(function(){
         },
         keypress: function(ev){
             console.log(ev);
-            el = $(this.el).find('#todo-text')
+            el = $(this.el).find('#todo-text');
             if (ev.originalEvent.keyCode==13){
                 var todo = new Todo({todo:el.val()});
                 window.todos.add(todo);
                 var todoView = new TodoView({model:todo});
-                $('#container').append(todoView.render().el);
+                $('#container ul').append(todoView.render().el);
                 $(el).val('').blur();
             }
         }
@@ -83,9 +83,8 @@ $(document).ready(function(){
     window.entertodoview = new EnterTodoView();
     window.remainingItemsView = new RemainingItemsView();
     todos.add(todo);
-    $('#container').append(entertodoview.render().el);
-    $('#container').append(todoView.render().el);
+    $('#container').prepend(entertodoview.render().el);
+    $('#container ul').append(todoView.render().el);
     $('#counter').append(remainingItemsView.render().el);
 
 });
-
