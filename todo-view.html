@@ -1,0 +1,8 @@
+<script type="text/template" id="todo-view">
+    <li>
+        <label>
+            <input style="float:left" type="checkbox" class="done_status" <%= is_done?'checked':'' %> />
+            <span class="<%= is_done?'done':'undone' %>"><%= todo %></span>
+        </label>
+    </li>
+</script>

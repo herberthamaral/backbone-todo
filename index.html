@@ -11,6 +11,7 @@
         </style>
 	</head>
     <body>
+        <h1>Todos</h1>
         <div id="container">
             <ul class='inputs-list'>
             </ul>
@@ -20,27 +21,35 @@
         <script src="jquery.js"></script>
         <script src="underscore.js"></script>
         <script src="backbone.js"></script>
-        <script type="text/template" id="alert-view">
-            <div class="alert-message success fade in" data-alert="alert">
-                <a class="close" href="#">x</a>
-                <p class="content">Item adicionado!</p>
-            </div>
-        </script>
-        <script type="text/template" id="todo-enter-view">
-            <input type="text" class="span8" placeholder="insira sua tarefa e tecle enter" id="todo-text" />
-        </script>
-        <script type="text/template" id="todo-view">
-            <li>
-                <label>
-                    <input style="float:left" type="checkbox" class="done_status" <%= is_done?'checked':'' %> />
-                    <span class="<%= is_done?'done':'undone' %>"><%= todo %></span>
-                </label>
-            </li>
-        </script>
-        <script type="text/template" id="remaining-items-view">
-            <p><%= remaining %> itens restantes</p>
-        </script>
         <script src="bootstrap-alert.js"></script>
+        <script src="backbone-localstorage.js"></script>
+        <script src="yepnope.js"></script>
         <script src="myapp.js"></script>
+        <script>
+            load_templates = function(templates, callback){
+                if (templates.length == 0){
+                    if (typeof(callback) == "function") 
+                        callback();
+                }else{
+                    template = templates.shift()
+                    $.ajax(template, {
+                        dataType: 'html',
+                        success:function(data){ 
+                            $('body').append(data);
+                            load_templates(templates, callback); 
+                        }
+                    });
+                }
+            }
+            $(document).ready(function(){
+                load_templates(['alert-view.html',
+                                'remaining-items-view.html',
+                                'todo-view.html',
+                                'todo-enter-view.html',
+                                'alert-view.html'], 
+                               start);
+            });
+            
+        </script>
     </body>
 </html>
