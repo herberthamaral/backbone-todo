@@ -30,7 +30,6 @@ $(document).ready(function(){
             return this;
         },
         keypress: function(ev){
-            console.log(ev);
             el = $(this.el).find('#todo-text');
             if (ev.originalEvent.keyCode==13){
                 var todo = new Todo({todo:el.val()});
@@ -86,7 +85,9 @@ $(document).ready(function(){
         render:function(){
             content = this.template({});
             $(this.el).html(content);
-            setTimeout(function(){ $(this.el).find('.alert-message').alert('close');  }, 2000);
+            setTimeout( function(){ 
+                $('body').find('.alert-message').remove();  
+            }, 2000);
             return this;
         }
     });
